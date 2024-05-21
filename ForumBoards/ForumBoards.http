@@ -1,6 +1,6 @@
 @ForumBoards_HostAddress = http://localhost:5266
 
-GET {{ForumBoards_HostAddress}}/weatherforecast/
+GET {{ForumBoards_HostAddress}}/posts/
 Accept: application/json
 
 ###

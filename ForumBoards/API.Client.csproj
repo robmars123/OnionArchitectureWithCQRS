@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ForumBoards.Core\ForumBoards.Core.csproj" />
+    <ProjectReference Include="..\ForumBoards.DataAccess\ForumBoards.DataAccess.csproj" />
+    <ProjectReference Include="..\ForumBoards.QueryHandlers\ForumBoards.QueryHandlers.csproj" />
+  </ItemGroup>
+
 </Project>
