@@ -1,0 +1,4 @@
+CREATE PROCEDURE GetPosts
+AS
+	SELECT * FROM Posts
+GO;
