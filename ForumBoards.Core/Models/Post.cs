@@ -8,8 +8,8 @@ namespace ForumBoards.Core.Models
 {
     public class Post
     {
-        public int Id { get; set; }
-        public string MessageTextRaw { get; set; }
-        public int UserId { get; set; }
+        public int? Id { get; set; }
+        public int? UserId { get; set; }
+        public string? MessageTextRaw { get; set; }
     }
 }

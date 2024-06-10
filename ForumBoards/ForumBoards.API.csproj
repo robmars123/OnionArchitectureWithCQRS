@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ForumBoards.Core\ForumBoards.Core.csproj" />
     <ProjectReference Include="..\ForumBoards.DataAccess\ForumBoards.DataAccess.csproj" />
+    <ProjectReference Include="..\ForumBoards.Infrastructure\ForumBoards.Infrastructure.csproj" />
     <ProjectReference Include="..\ForumBoards.QueryHandlers\ForumBoards.QueryHandlers.csproj" />
   </ItemGroup>
 

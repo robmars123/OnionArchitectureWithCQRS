@@ -23,7 +23,7 @@ namespace ForumBoards.QueryHandlers.Models.Posts
         {
             try
             {
-                IEnumerable<PostRequestResult> result = _postRepository.GetPosts(); //replace by repository
+                IEnumerable<PostRequestResult> result = _postRepository.GetPosts(); 
                 return new QueryResult<IEnumerable<PostRequestResult>>(true, result);
             }
             catch (Exception ex)

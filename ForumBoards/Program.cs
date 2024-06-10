@@ -1,6 +1,10 @@
 using API.Client.Dependencies;
+using ForumBoards.APIClient.Models;
+using ForumBoards.Core.Models.Abstraction;
 using ForumBoards.Core.Repositories;
+using ForumBoards.Core.Results;
 using ForumBoards.DataAccess.Repositories;
+using ForumBoards.Infrastructure.Factory;
 
 namespace ForumBoards
 {
@@ -17,6 +21,8 @@ namespace ForumBoards
             //dependency injection
             builder.Services.AddTransient<IPostRepository, PostRepository>();
 
+            //Factory
+            builder.Services.AddTransient<IModelFactory<PostRequestModel, PostRequestResult>, PostModelFactory>();
 
 
             builder.Services.AddControllers();

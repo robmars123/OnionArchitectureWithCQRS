@@ -1,9 +1,10 @@
-﻿using API.Client.Models;
+﻿using ForumBoards.APIClient.API.Models;
+using ForumBoards.APIClient.Models;
 using ForumBoards.Core.Generics;
+using ForumBoards.Core.Models.Abstraction;
 using ForumBoards.Core.Queries;
 using ForumBoards.Core.Results;
 using ForumBoards.QueryHandlers.Models.Abstraction;
-using ForumBoards.QueryHandlers.Models.Posts;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,24 +16,28 @@ namespace API.Client.Controllers
     public class PostsController : ControllerBase
     {
         private readonly IHandleQuery<PostRequestQuery, QueryResult<IEnumerable<PostRequestResult>>> _postRequestHandler;
+        private readonly IModelFactory<PostRequestModel, PostRequestResult> _postModelFactory;
 
         public PostsController(
-            IHandleQuery<PostRequestQuery, QueryResult<IEnumerable<PostRequestResult>>> postRequestHandler)
+            IHandleQuery<PostRequestQuery, QueryResult<IEnumerable<PostRequestResult>>> postRequestHandler,
+            IModelFactory<PostRequestModel, PostRequestResult> postModelFactory)
         {
             _postRequestHandler = postRequestHandler;
+            _postModelFactory = postModelFactory;
         }
         // GET: api/<ValuesController>
         [HttpGet]
         public IActionResult Get([FromForm]  PostRequestModel request)
         {
             PostRequestQuery postRequestQuery = new (request.Id);
-            var result = _postRequestHandler.Handle(postRequestQuery);
+            QueryResult<IEnumerable<PostRequestResult>> result = _postRequestHandler.Handle(postRequestQuery);
 
             if (!result.Successful)
                 return BadRequest();
 
             //Create Factory Pattern
-            return Ok(result.Result);
+            ListModel<PostRequestModel> model = _postModelFactory.Create(result.Result);
+            return Ok(model);
         }
 
         // GET api/<ValuesController>/5

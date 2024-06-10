@@ -1,4 +1,4 @@
-﻿namespace ForumBoards.Infrastructure
+﻿namespace ForumBoards.APIClient
 {
     public class Class1
     {
