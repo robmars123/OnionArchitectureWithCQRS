@@ -4,8 +4,10 @@ using ForumBoards.Core.Models;
 using ForumBoards.Core.Repositories;
 using ForumBoards.Core.Resolvers;
 using ForumBoards.Core.Results;
+using ForumBoards.DataAccess.Constants;
 using ForumBoards.DataAccess.Mapper;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace ForumBoards.DataAccess.Repositories
 {
@@ -27,9 +29,14 @@ namespace ForumBoards.DataAccess.Repositories
         {
             using (SqlConnection connection = GetSqlConnection())
             {
-                var result = connection.Query<Post>("GetPosts", null, commandType: System.Data.CommandType.StoredProcedure);
+                DynamicParameters parameters = new DynamicParameters();
+                //parameters.Add(StoredProcedureConstants.Parameters.Id, 1);
 
-                return result.Select(PostMapper.Map);
+                var result = connection.QueryAsync<Post>(sql: StoredProcedureConstants.GetPosts, 
+                                                        parameters,
+                                                        commandType: CommandType.StoredProcedure);
+
+                return result.Result.Select(PostMapper.Map);
             }
         }
     }

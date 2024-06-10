@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ForumBoards.APIClient\ForumBoards.APIClient.csproj" />
-    <ProjectReference Include="..\ForumBoards.Core\ForumBoards.Core.csproj" />
+    <Folder Include="Models\In\" />
   </ItemGroup>
 
 </Project>

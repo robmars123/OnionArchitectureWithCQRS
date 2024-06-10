@@ -1,4 +1,4 @@
-﻿namespace API.Client.Models
+﻿namespace ForumBoards.APIClient.Models
 {
     public class PostRequestModel
     {
