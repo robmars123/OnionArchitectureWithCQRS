@@ -1,4 +1,5 @@
-﻿using ForumBoards.Core.Generics;
+﻿using AssetManagement.Api.Client;
+using ForumBoards.Core.Generics;
 using ForumBoards.Core.Queries;
 using ForumBoards.Core.Resolvers;
 using ForumBoards.Core.Results;
@@ -13,6 +14,8 @@ namespace API.Client.Dependencies
 
             services.AddTransient<IHandleQuery<PostRequestQuery, QueryResult<IEnumerable<PostRequestResult>>>, PostQueryHandler>();
             services.AddTransient<IConnectionStringResolver, ConnectionStringResolver>();
+
+            services.AddTransient<IAPIClient, APIClient>();
         }
     }
 }

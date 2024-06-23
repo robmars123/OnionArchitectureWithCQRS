@@ -25,7 +25,7 @@ namespace ForumBoards.DataAccess.Repositories
             string connString =  _connectionStringResolver.Resolve();
             return new SqlConnection(connString);
         }
-        public IEnumerable<PostRequestResult> GetPosts()
+        public List<PostRequestResult> GetPosts()
         {
             using (SqlConnection connection = GetSqlConnection())
             {
@@ -36,7 +36,7 @@ namespace ForumBoards.DataAccess.Repositories
                                                         parameters,
                                                         commandType: CommandType.StoredProcedure);
 
-                return result.Result.Select(PostMapper.Map);
+                return result.Result.Select(PostMapper.Map).ToList();
             }
         }
     }

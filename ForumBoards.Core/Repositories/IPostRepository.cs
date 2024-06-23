@@ -5,6 +5,6 @@ namespace ForumBoards.Core.Repositories
 {
     public interface IPostRepository
     {
-        IEnumerable<PostRequestResult> GetPosts();
+        List<PostRequestResult> GetPosts();
     }
 }

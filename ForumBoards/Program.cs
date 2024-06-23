@@ -16,16 +16,13 @@ namespace ForumBoards
 
             //Register Dependencies
             builder.Services.RegisterQueryHandler();
+            builder.Services.RegisterFactories();
+            builder.Services.RegisterRepositories();
 
-            // Add services to the container.
-            //dependency injection
-            builder.Services.AddTransient<IPostRepository, PostRepository>();
-
-            //Factory
-            builder.Services.AddTransient<IModelFactory<PostRequestModel, PostRequestResult>, PostModelFactory>();
-
+            // Add services to the container.            
 
             builder.Services.AddControllers();
+            builder.Services.AddHttpClient();
 
             var app = builder.Build();
 

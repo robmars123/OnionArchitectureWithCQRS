@@ -1,4 +1,5 @@
-﻿using ForumBoards.APIClient.API.Models;
+﻿using AssetManagement.Api.Client;
+using ForumBoards.APIClient.API.Models;
 using ForumBoards.APIClient.Models;
 using ForumBoards.Core.Generics;
 using ForumBoards.Core.Models.Abstraction;
@@ -17,25 +18,29 @@ namespace API.Client.Controllers
     {
         private readonly IHandleQuery<PostRequestQuery, QueryResult<IEnumerable<PostRequestResult>>> _postRequestHandler;
         private readonly IModelFactory<PostRequestModel, PostRequestResult> _postModelFactory;
+        private readonly IAPIClient _aPIClient;
 
         public PostsController(
             IHandleQuery<PostRequestQuery, QueryResult<IEnumerable<PostRequestResult>>> postRequestHandler,
-            IModelFactory<PostRequestModel, PostRequestResult> postModelFactory)
+            IModelFactory<PostRequestModel, PostRequestResult> postModelFactory,
+           IAPIClient aPIClient)
         {
             _postRequestHandler = postRequestHandler;
             _postModelFactory = postModelFactory;
+            _aPIClient = aPIClient;
         }
         // GET: api/<ValuesController>
         [HttpGet]
-        public IActionResult Get([FromForm]  PostRequestModel request)
+        public async Task<IActionResult> GetAsync([FromForm]  PostRequestModel request)
         {
             PostRequestQuery postRequestQuery = new (request.Id);
             QueryResult<IEnumerable<PostRequestResult>> result = _postRequestHandler.Handle(postRequestQuery);
 
+            //test getting assets from other solution
+            var externalAssets = await _aPIClient.GetAssets();
             if (!result.Successful)
                 return BadRequest();
 
-            //Create Factory Pattern
             ListModel<PostRequestModel> model = _postModelFactory.Create(result.Result);
             return Ok(model);
         }
