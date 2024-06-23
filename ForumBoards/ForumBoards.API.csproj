@@ -13,4 +13,14 @@
     <ProjectReference Include="..\ForumBoards.QueryHandlers\ForumBoards.QueryHandlers.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ExternalDependencies\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AssetManagement.Api.Client">
+      <HintPath>ExternalDependencies\AssetManagement.Api.Client.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
